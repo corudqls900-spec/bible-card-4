@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>빛의 길을 따라 가는 사람들</title>
+
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+    }
+
+    .card {
+      width: 55mm;
+      height: 85mm;
+      perspective: 1000px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-front {
+      background-image: url('images/front-4.png');
+      filter: brightness(0.95) contrast(1.1);
+    }
+
+    .card-back {
+      background-image: url('images/back-4.png');
+      filter: brightness(0.95) contrast(1.1);
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">
+    <div class="card-inner">
+      <!-- 앞면 -->
+      <div class="card-face card-front"></div>
+
+      <!-- 뒷면 -->
+      <div class="card-face card-back"></div>
+    </div>
+  </div>
+
+  <script>
+    const card = document.getElementById('card');
+    card.addEventListener('click', () => card.classList.toggle('flipped'));
+  </script>
+</body>
+</html>
